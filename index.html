@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TribuApp — La app de tu familia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;0,900;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #10B981;
+      --green-dark: #059669;
+      --green-light: #D1FAE5;
+      --blue: #3B82F6;
+      --ink: #0D1117;
+      --mist: #F4F7F4;
+      --white: #FFFFFF;
+      --text: #1C2B1C;
+      --sub: #5A7060;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--mist);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 40px;
+      background: rgba(244, 247, 244, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(16, 185, 129, 0.15);
+    }
+    .nav-logo {
+      font-family: 'Fraunces', serif;
+      font-size: 22px; font-weight: 900;
+      color: var(--ink);
+      letter-spacing: -0.5px;
+    }
+    .nav-logo span { color: var(--green); }
+    .nav-badge {
+      background: var(--green); color: white;
+      font-size: 12px; font-weight: 500;
+      padding: 6px 16px; border-radius: 20px;
+      letter-spacing: 0.3px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 20% 60%, rgba(16,185,129,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 80% 20%, rgba(59,130,246,0.08) 0%, transparent 70%),
+        var(--mist);
+    }
+
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--white);
+      border: 1px solid rgba(16,185,129,0.3);
+      padding: 6px 16px 6px 8px;
+      border-radius: 20px;
+      font-size: 13px; color: var(--sub);
+      margin-bottom: 32px;
+      position: relative; z-index: 1;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-pill-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.85); }
+    }
+
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(52px, 8vw, 96px);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -2px;
+      color: var(--ink);
+      margin-bottom: 24px;
+      position: relative; z-index: 1;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--green);
+      font-weight: 300;
+    }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--sub);
+      font-weight: 300;
+      max-width: 520px;
+      line-height: 1.65;
+      margin-bottom: 44px;
+      position: relative; z-index: 1;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-cta {
+      display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+      position: relative; z-index: 1;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+    .btn-primary {
+      background: var(--ink); color: white;
+      padding: 14px 28px; border-radius: 12px;
+      font-size: 15px; font-weight: 500;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(13,17,23,0.2);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(13,17,23,0.25); }
+    .btn-secondary {
+      background: white; color: var(--ink);
+      padding: 14px 28px; border-radius: 12px;
+      font-size: 15px; font-weight: 500;
+      text-decoration: none;
+      border: 1px solid rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .btn-secondary:hover { transform: translateY(-2px); }
+
+    /* ── FEATURES ── */
+    .features {
+      padding: 100px 24px;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .section-label {
+      font-size: 12px; font-weight: 500; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--green);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 700; line-height: 1.1;
+      letter-spacing: -1px; color: var(--ink);
+      margin-bottom: 60px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: white;
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 20px;
+      padding: 32px;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+
+    .feature-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; margin-bottom: 20px;
+    }
+    .icon-green { background: var(--green-light); }
+    .icon-blue { background: #DBEAFE; }
+    .icon-purple { background: #EDE9FE; }
+    .icon-orange { background: #FEF3C7; }
+    .icon-pink { background: #FCE7F3; }
+    .icon-teal { background: #CCFBF1; }
+
+    .feature-title {
+      font-family: 'Fraunces', serif;
+      font-size: 20px; font-weight: 700;
+      margin-bottom: 10px; color: var(--ink);
+    }
+    .feature-desc {
+      font-size: 15px; line-height: 1.6;
+      color: var(--sub); font-weight: 300;
+    }
+
+    /* ── PLATFORMS ── */
+    .platforms {
+      background: var(--ink);
+      padding: 80px 24px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .platforms::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 50% 80% at 50% 50%, rgba(16,185,129,0.12) 0%, transparent 70%);
+    }
+    .platforms h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700; color: white;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .platforms p {
+      color: rgba(255,255,255,0.55);
+      font-size: 16px; font-weight: 300;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .platform-badges {
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+      position: relative;
+    }
+    .platform-badge {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 12px 24px; border-radius: 12px;
+      color: white; font-size: 15px; font-weight: 400;
+    }
+    .platform-badge svg { width: 20px; height: 20px; fill: white; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 40px 24px;
+      text-align: center;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+    .footer-logo {
+      font-family: 'Fraunces', serif;
+      font-size: 18px; font-weight: 900;
+      color: var(--ink); margin-bottom: 12px;
+    }
+    .footer-logo span { color: var(--green); }
+    .footer-links {
+      display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .footer-links a {
+      color: var(--sub); font-size: 14px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--green); }
+    .footer-copy { font-size: 13px; color: #AAB8AA; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .features { padding: 60px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Tribu<span>App</span></div>
+    <span class="nav-badge">Beta</span>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-pill">
+      <div class="hero-pill-dot"></div>
+      Disponible en iOS y Android
+    </div>
+    <h1>La app de<br><em>tu familia</em></h1>
+    <p class="hero-sub">
+      Gastos compartidos, calendario familiar, lista de la compra y asistente IA.
+      Todo en un solo lugar para tu tribu.
+    </p>
+    <div class="hero-cta">
+      <a href="https://apps.apple.com" class="btn-primary">Descargar en iOS</a>
+      <a href="#features" class="btn-secondary">Ver funciones</a>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="section-label">Funciones</div>
+    <h2 class="section-title">Todo lo que tu familia necesita</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon icon-green">💰</div>
+        <div class="feature-title">Gastos compartidos</div>
+        <p class="feature-desc">Divide gastos fácilmente entre los miembros de tu tribu. Saldos claros y transferencias recomendadas.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon icon-blue">📅</div>
+        <div class="feature-title">Calendario familiar</div>
+        <p class="feature-desc">Eventos compartidos con toda la tribu. Compatible con Apple Calendar y Google Calendar.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon icon-purple">🛒</div>
+        <div class="feature-title">Lista de la compra</div>
+        <p class="feature-desc">Listas compartidas en tiempo real. Añade productos, organízalos por grupos y márcalos al comprar.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon icon-orange">✨</div>
+        <div class="feature-title">Asistente IA</div>
+        <p class="feature-desc">Habla con naturalidad: "Pagamos la cena, fueron 60€" y el asistente lo apunta automáticamente.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon icon-pink">🔔</div>
+        <div class="feature-title">Notificaciones</div>
+        <p class="feature-desc">Recibe avisos cuando alguien añade un gasto, crea un evento o actualiza la lista de la compra.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon icon-teal">🏠</div>
+        <div class="feature-title">Múltiples tribus</div>
+        <p class="feature-desc">Puedes pertenecer a varias tribus: tu familia, tu piso de estudiantes, tus amigos de viaje.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORMS -->
+  <section class="platforms">
+    <h2>Disponible en todas las plataformas</h2>
+    <p>Descárgala gratis en tu dispositivo favorito</p>
+    <div class="platform-badges">
+      <div class="platform-badge">
+        <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        App Store (iOS)
+      </div>
+      <div class="platform-badge">
+        <svg viewBox="0 0 24 24"><path d="M3.18 23.76c.3.17.64.19.96.08l12.45-7.2-2.67-2.67-10.74 9.79zm-1.11-20.2C2 3.83 2 4.1 2 4.4v15.2c0 .3 0 .57.07.83l.04.04 8.52-8.52v-.2L2.07 3.52l-.04.04zM20.13 10.4l-2.6-1.5-2.98 2.98 2.98 2.98 2.6-1.5c.74-.43.74-1.53 0-1.96zM4.14.24L16.59 7.44l-2.67 2.67L4.14.24z"/></svg>
+        Google Play (Android)
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Tribu<span>App</span></div>
+    <div class="footer-links">
+      <a href="privacy.html">Política de Privacidad</a>
+      <a href="mailto:msalvador441@gmail.com">Contacto</a>
+    </div>
+    <p class="footer-copy">© 2025 TribuApp. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>
