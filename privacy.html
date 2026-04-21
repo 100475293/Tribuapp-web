@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidad — TribuApp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #10B981;
+      --ink: #0D1117;
+      --mist: #F4F7F4;
+      --text: #1C2B1C;
+      --sub: #5A7060;
+    }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--mist);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 40px;
+      background: rgba(244, 247, 244, 0.95);
+      border-bottom: 1px solid rgba(16, 185, 129, 0.15);
+    }
+    .nav-logo {
+      font-family: 'Fraunces', serif;
+      font-size: 20px; font-weight: 900;
+      color: var(--ink); text-decoration: none;
+    }
+    .nav-logo span { color: var(--green); }
+    .container {
+      max-width: 760px; margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--sub); font-size: 14px; text-decoration: none;
+      margin-bottom: 40px;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--green); }
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 900; line-height: 1.1;
+      letter-spacing: -1px; color: var(--ink);
+      margin-bottom: 12px;
+    }
+    .meta {
+      font-size: 14px; color: var(--sub);
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 22px; font-weight: 700;
+      color: var(--ink); margin-top: 40px; margin-bottom: 12px;
+    }
+    p { font-size: 15px; color: var(--sub); margin-bottom: 16px; font-weight: 300; }
+    ul { margin: 12px 0 16px 20px; }
+    li { font-size: 15px; color: var(--sub); font-weight: 300; margin-bottom: 6px; }
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .section {
+      background: white;
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 16px;
+    }
+    .section h2 { margin-top: 0; }
+    footer {
+      text-align: center; padding: 32px 24px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      font-size: 13px; color: #AAB8AA;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Tribu<span>App</span></a>
+  </nav>
+
+  <div class="container">
+    <a href="index.html" class="back-link">← Volver al inicio</a>
+
+    <h1>Política de Privacidad</h1>
+    <p class="meta">Última actualización: 19 de abril de 2025 · TribuApp</p>
+
+    <div class="section">
+      <h2>1. Información que recopilamos</h2>
+      <p>TribuApp recopila la siguiente información para proporcionar sus servicios:</p>
+      <ul>
+        <li><strong>Información de cuenta:</strong> nombre, dirección de correo electrónico e imagen de perfil obtenidos a través de los proveedores de autenticación (Google, Apple).</li>
+        <li><strong>Datos de uso:</strong> gastos, eventos de calendario, listas de la compra y mensajes al asistente IA que el usuario introduce voluntariamente.</li>
+        <li><strong>Token de notificaciones push:</strong> para enviar notificaciones relacionadas con la actividad de tu tribu.</li>
+        <li><strong>Datos del calendario:</strong> si el usuario otorga permiso, se accede a los eventos del calendario nativo del dispositivo únicamente para mostrarlos dentro de la app. No se almacenan en nuestros servidores.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>2. Cómo usamos tu información</h2>
+      <p>Utilizamos la información recopilada exclusivamente para:</p>
+      <ul>
+        <li>Proveer y mejorar las funcionalidades de TribuApp.</li>
+        <li>Sincronizar datos entre los miembros de una misma tribu.</li>
+        <li>Enviar notificaciones push relacionadas con la actividad de tu tribu.</li>
+        <li>Proporcionar respuestas personalizadas a través del asistente IA.</li>
+      </ul>
+      <p>No vendemos, alquilamos ni compartimos tu información personal con terceros con fines comerciales.</p>
+    </div>
+
+    <div class="section">
+      <h2>3. Almacenamiento de datos</h2>
+      <p>Los datos de la aplicación se almacenan de forma segura en <strong>Supabase</strong>, un proveedor de base de datos en la nube que cumple con las normativas de protección de datos (GDPR). Los datos se almacenan en servidores ubicados en la Unión Europea.</p>
+      <p>El asistente IA utiliza la API de <strong>OpenAI</strong> (GPT-4o mini). Los mensajes enviados al asistente se procesan bajo la política de privacidad de OpenAI y no se almacenan permanentemente en nuestros servidores.</p>
+    </div>
+
+    <div class="section">
+      <h2>4. Permisos del dispositivo</h2>
+      <p>TribuApp puede solicitar los siguientes permisos:</p>
+      <ul>
+        <li><strong>Calendario:</strong> para leer eventos del calendario nativo y mostrarlos en la vista personal. Los datos no se suben a nuestros servidores.</li>
+        <li><strong>Notificaciones:</strong> para recibir avisos sobre la actividad de tu tribu.</li>
+        <li><strong>Fotos/Galería:</strong> para actualizar la foto de perfil o la imagen de tu tribu.</li>
+      </ul>
+      <p>Puedes revocar cualquier permiso en cualquier momento desde los Ajustes de tu dispositivo.</p>
+    </div>
+
+    <div class="section">
+      <h2>5. Acceso de Google Calendar</h2>
+      <p>Si el usuario conecta su cuenta de Google Calendar, TribuApp accede únicamente a los eventos del calendario primario con permiso de solo lectura (<code>calendar.readonly</code>). Esta información se utiliza exclusivamente para mostrar los eventos dentro de la aplicación y no se almacena en nuestros servidores ni se comparte con terceros.</p>
+      <p>Puedes revocar el acceso en cualquier momento desde <a href="https://myaccount.google.com/permissions" target="_blank">myaccount.google.com/permissions</a>.</p>
+    </div>
+
+    <div class="section">
+      <h2>6. Tus derechos</h2>
+      <p>De acuerdo con el Reglamento General de Protección de Datos (GDPR) tienes derecho a:</p>
+      <ul>
+        <li>Acceder a los datos personales que tenemos sobre ti.</li>
+        <li>Solicitar la rectificación o eliminación de tus datos.</li>
+        <li>Oponerte al tratamiento de tus datos.</li>
+        <li>Solicitar la portabilidad de tus datos.</li>
+      </ul>
+      <p>Para ejercer cualquiera de estos derechos, contacta con nosotros en <a href="mailto:msalvador441@gmail.com">msalvador441@gmail.com</a>.</p>
+    </div>
+
+    <div class="section">
+      <h2>7. Eliminación de cuenta</h2>
+      <p>Puedes solicitar la eliminación de tu cuenta y todos los datos asociados en cualquier momento enviando un correo a <a href="mailto:msalvador441@gmail.com">msalvador441@gmail.com</a>. Procesaremos tu solicitud en un plazo máximo de 30 días.</p>
+    </div>
+
+    <div class="section">
+      <h2>8. Menores de edad</h2>
+      <p>TribuApp no está dirigida a menores de 13 años. No recopilamos intencionadamente información personal de menores. Si eres padre o tutor y crees que tu hijo ha proporcionado información personal, contáctanos para eliminarla.</p>
+    </div>
+
+    <div class="section">
+      <h2>9. Cambios en esta política</h2>
+      <p>Podemos actualizar esta política de privacidad ocasionalmente. Te notificaremos sobre cambios significativos a través de la aplicación o por correo electrónico. El uso continuado de TribuApp tras los cambios implica la aceptación de la nueva política.</p>
+    </div>
+
+    <div class="section">
+      <h2>10. Contacto</h2>
+      <p>Si tienes preguntas sobre esta política de privacidad, puedes contactarnos en:</p>
+      <p><strong>TribuApp</strong><br>
+      Email: <a href="mailto:msalvador441@gmail.com">msalvador441@gmail.com</a></p>
+    </div>
+  </div>
+
+  <footer>© 2025 TribuApp. Todos los derechos reservados.</footer>
+
+</body>
+</html>
